@@ -3,10 +3,6 @@ package com.example.covid19stats;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.leo.simplearcloader.SimpleArcLoader;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-import java.util.List;
+import com.leo.simplearcloader.SimpleArcLoader;
 
 import retrofit2.Call;
 import retrofit2.Callback;

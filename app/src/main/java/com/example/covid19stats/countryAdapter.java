@@ -3,23 +3,18 @@ package com.example.covid19stats;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -76,9 +71,13 @@ public class countryAdapter extends RecyclerView.Adapter<countryAdapter.viewHold
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            countryAdapterArrayListFull = (ArrayList<countryDetails>) results.values;
-            recyclerViewFrag.countryInfoArrayList = (ArrayList<countryDetails>) results.values;
-            notifyDataSetChanged();
+            if (results.values != null) {
+                countryAdapterArrayListFull = (ArrayList<countryDetails>) results.values;
+                recyclerViewFrag.countryInfoArrayList = (ArrayList<countryDetails>) results.values;
+                Log.e(TAG, "publishResults: " + recyclerViewFrag.countryInfoArrayList.size());
+                Log.e(TAG, "publishResults: " + results.count);
+                notifyDataSetChanged();
+            }
         }
     };
 
@@ -122,6 +121,7 @@ public class countryAdapter extends RecyclerView.Adapter<countryAdapter.viewHold
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                recyclerViewFrag.searchBar.setText("");
                 countryStats stats = new countryStats();
                 FragmentTransaction ft = ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction();
                 stats.onActivityResult(0, Activity.RESULT_OK,new Intent().putExtra("country_name",countryInfo.getCountry()));

@@ -44,8 +44,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //for lower version retrofit
-    implementation 'com.squareup.okhttp3:okhttp:3.12.10'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.10'
+    implementation ("com.squareup.okhttp3:okhttp:3.12.12"){
+        force = true
+    }
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.12'
 
     //simple arcLoader
     implementation 'com.leo.simplearcloader:simplearcloader:1.0.+'
@@ -53,5 +55,6 @@ dependencies {
     //for loading images through url
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 }
